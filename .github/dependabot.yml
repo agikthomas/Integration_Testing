@@ -1,6 +1,17 @@
+---
 version: 2
 updates:
-  - package-ecosystem: "go:modules"
+  - package-ecosystem: "gomod"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
+    labels:
+      - automation
+      - dependabot
+      # The `aws` label enables optional 
+      # stages in the CI for AWS cloud testing.
+      - aws
+    groups:
+      aws-sdk:
+        patterns:
+          - "github.com/aws/aws-sdk-go-v2/*"
